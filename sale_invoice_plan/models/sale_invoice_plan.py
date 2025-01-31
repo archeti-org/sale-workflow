@@ -196,7 +196,8 @@ class SaleInvoicePlan(models.Model):
             prec = order_line.product_uom.rounding
             if plan_qty:
                 plan_qty = float_round(plan_qty, precision_rounding=prec)
-            if float_compare(abs(plan_qty), abs(line.quantity), prec) == 1:
+            if float_compare(
+                abs(plan_qty), abs(line.quantity), precision_rounding=prec) == 1:
                 raise ValidationError(
                     _(
                         "Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
